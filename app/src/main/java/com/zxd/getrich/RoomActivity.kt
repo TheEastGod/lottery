@@ -36,58 +36,45 @@ class RoomActivity : AppCompatActivity() {
     private val lotteryDao = DbManager.db.lotteryDao()
     private lateinit var progressDialog: ProgressDialog
     private val coefficient = 5.0f
+    val defaultValue: Float = 0f
 
     private val frontAllCombinationMap = HashMap<String, Int>()
     private val backAllCombinationMap = HashMap<String, Int>()
     private var lotteryCount = 0
-    var frontCardinalityCount = 0
-    var frontEvenCount = 0
-    var v7Count = 0
-    var v14Count = 0
-    var v21Count = 0
-    var v28Count = 0
-    var v35Count = 0
-    var backCardinalityCount = 0
-    var backEvenCount = 0
-    var v4Count = 0
-    var v8Count = 0
-    var v12Count = 0
+    var frontCardinalityCount = defaultValue
+    var frontEvenCount = defaultValue
+    var v7Count = defaultValue
+    var v14Count = defaultValue
+    var v21Count = defaultValue
+    var v28Count = defaultValue
+    var v35Count = defaultValue
+    var backCardinalityCount = defaultValue
+    var backEvenCount = defaultValue
+    var v4Count = defaultValue
+    var v8Count = defaultValue
+    var v12Count = defaultValue
 
-    var totalFrontCardinalityCount = 0f
-    var totalFrontEvenCount = 0f
-    var totalV7Count = 0f
-    var totalV14Count = 0f
-    var totalV21Count = 0f
-    var totalV28Count = 0f
-    var totalV35Count = 0f
-    var totalBackCardinalityCount = 0f
-    var totalBackEvenCount = 0f
-    var totalV4Count = 0f
-    var totalV8Count = 0f
-    var totalV12Count = 0f
+    var totalFrontCardinalityCount = defaultValue
+    var totalFrontEvenCount = defaultValue
+    var totalV7Count = defaultValue
+    var totalV14Count = defaultValue
+    var totalV21Count = defaultValue
+    var totalV28Count = defaultValue
+    var totalV35Count = defaultValue
+    var totalBackCardinalityCount = defaultValue
+    var totalBackEvenCount = defaultValue
+    var totalV4Count = defaultValue
+    var totalV8Count = defaultValue
+    var totalV12Count = defaultValue
 
     private val totalFrontAllCombinationMap = HashMap<String, Float>()
     private val totalBackAllCombinationMap = HashMap<String, Float>()
-    private var v10CountPercent : Double = 0.0
-    private var v20CountPercent: Double = 0.0
-    private var v30CountPercent: Double = 0.0
-    private var v35CountPercent: Double = 0.0
 
-    private var frontCardinalityPercent: Double = 0.0
-    private var frontEvenCountPercent: Double = 0.0
 
     private val hot15FrontList = ArrayList<String>()
     private val cold15FrontList = ArrayList<String>()
     private val veryHot15FrontList = ArrayList<String>()
     private val veryCold15FrontList = ArrayList<String>()
-
-    private var v6CountPercent: Double = 0.0
-    private var v12CountPercent: Double = 0.0
-
-    private val currentFrontAllCombinationMap = HashMap<String, Int>()
-
-    private var backCardinalityPercent : Double = 0.0
-    private var backEvenCountPercent : Double = 0.0
 
     private val hot15BackList = ArrayList<String>()
     private val cold15BackList = ArrayList<String>()
@@ -95,11 +82,12 @@ class RoomActivity : AppCompatActivity() {
     private val veryHot15BackList = ArrayList<String>()
     private val veryCold15BackList = ArrayList<String>()
 
-    private val currentBackAllCombinationMap = HashMap<String, Int>()
 
     private val myOffset = 0
     private val mapFrontFor15 = HashMap<String, Int>()
     private val mapBackFor15 = HashMap<String, Int>()
+    private val mapFrontFor49 = HashMap<String, Int>()
+    private val mapBackFor49 = HashMap<String, Int>()
     private val mapFrontFor50 = HashMap<String, Int>()
     private val mapBackFor50 = HashMap<String, Int>()
     private val mapFrontFor100 = HashMap<String, Int>()
@@ -109,44 +97,44 @@ class RoomActivity : AppCompatActivity() {
     private val mapFrontFor200 = HashMap<String, Int>()
     private val mapBackFor200 = HashMap<String, Int>()
 
-    var frontCardinalityCountFor49 = 0
-    var frontEvenCountFor49 = 0
-    var v7CountFor49 = 0
-    var v14CountFor49 = 0
-    var v21CountFor49 = 0
-    var v28CountFor49 = 0
-    var v35CountFor49 = 0
-    var backCardinalityCountFor49 = 0
-    var backEvenCountFor49 = 0
-    var v4CountFor49 = 0
-    var v8CountFor49 = 0
-    var v12CountFor49 = 0
+    var frontCardinalityCountFor49 = defaultValue
+    var frontEvenCountFor49 = defaultValue
+    var v7CountFor49 = defaultValue
+    var v14CountFor49 = defaultValue
+    var v21CountFor49 = defaultValue
+    var v28CountFor49 = defaultValue
+    var v35CountFor49 = defaultValue
+    var backCardinalityCountFor49 = defaultValue
+    var backEvenCountFor49 = defaultValue
+    var v4CountFor49 = defaultValue
+    var v8CountFor49 = defaultValue
+    var v12CountFor49 = defaultValue
 
-    var frontCardinalityCountFor50 = 0
-    var frontEvenCountFor50 = 0
-    var v7CountFor50 = 0
-    var v14CountFor50 = 0
-    var v21CountFor50 = 0
-    var v28CountFor50 = 0
-    var v35CountFor50 = 0
-    var backCardinalityCountFor50 = 0
-    var backEvenCountFor50 = 0
-    var v4CountFor50 = 0
-    var v8CountFor50 = 0
-    var v12CountFor50 = 0
+    var frontCardinalityCountFor50 = defaultValue
+    var frontEvenCountFor50 = defaultValue
+    var v7CountFor50 = defaultValue
+    var v14CountFor50 = defaultValue
+    var v21CountFor50 = defaultValue
+    var v28CountFor50 = defaultValue
+    var v35CountFor50 = defaultValue
+    var backCardinalityCountFor50 = defaultValue
+    var backEvenCountFor50 = defaultValue
+    var v4CountFor50 = defaultValue
+    var v8CountFor50 = defaultValue
+    var v12CountFor50 = defaultValue
 
-    var frontCardinalityCountForA = 0
-    var frontEvenCountForA  = 0
-    var v7CountForA = 0
-    var v14CountForA = 0
-    var v21CountForA = 0
-    var v28CountForA = 0
-    var v35CountForA = 0
-    var backCardinalityCountForA = 0
-    var backEvenCountForA = 0
-    var v4CountForA = 0
-    var v8CountForA = 0
-    var v12CountForA = 0
+    var frontCardinalityCountForA = defaultValue
+    var frontEvenCountForA = defaultValue
+    var v7CountForA = defaultValue
+    var v14CountForA = defaultValue
+    var v21CountForA = defaultValue
+    var v28CountForA = defaultValue
+    var v35CountForA = defaultValue
+    var backCardinalityCountForA = defaultValue
+    var backEvenCountForA = defaultValue
+    var v4CountForA = defaultValue
+    var v8CountForA = defaultValue
+    var v12CountForA = defaultValue
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -169,7 +157,7 @@ class RoomActivity : AppCompatActivity() {
     }
 
     private fun initProbability() {
-        Thread{
+        Thread {
             //500次总共的数据，然后算50次平均数据
             lotteryCount = lotteryDao.getLotteryCount()
             computeLottery(lotteryCount, 0, false)
@@ -178,15 +166,14 @@ class RoomActivity : AppCompatActivity() {
 
             for (entry in frontAllCombinationMap) {
                 totalFrontAllCombinationMap[entry.key] = entry.value * averageCount
-                allNumberString.append( entry.key + ":" + entry.value * averageCount + ", ")
+                allNumberString.append(entry.key + ":" + entry.value * averageCount + ", ")
             }
             allNumberString.append("\n\n")
 
             for (entry in backAllCombinationMap) {
                 totalBackAllCombinationMap[entry.key] = entry.value * averageCount
-                allNumberString.append( entry.key + ":" + entry.value * averageCount + ", ")
+                allNumberString.append(entry.key + ":" + entry.value * averageCount + ", ")
             }
-            Log.i("mTag", "allNumberString ${allNumberString.toString()}")
             totalFrontCardinalityCount = frontCardinalityCount * averageCount
             totalFrontEvenCount = frontEvenCount * averageCount
             totalV7Count = v7Count * averageCount
@@ -199,259 +186,103 @@ class RoomActivity : AppCompatActivity() {
             totalV4Count = v4Count * averageCount
             totalV8Count = v8Count * averageCount
             totalV12Count = v12Count * averageCount
-            Log.i("mTag", "totalFrontCardinalityCount $totalFrontCardinalityCount")
-            Log.i("mTag", "totalFrontEvenCount $totalFrontEvenCount")
-            Log.i("mTag", "totalV7Count $totalV7Count")
-            Log.i("mTag", "totalV14Count $totalV14Count")
-            Log.i("mTag", "totalV21Count $totalV21Count")
-            Log.i("mTag", "totalV28Count $totalV28Count")
-            Log.i("mTag", "totalV35Count $totalV35Count")
-            Log.i("mTag", "totalBackCardinalityCount $totalBackCardinalityCount")
-            Log.i("mTag", "totalBackEvenCount $totalBackEvenCount")
-            Log.i("mTag", "totalV4Count $totalV4Count")
-            Log.i("mTag", "totalV8Count $totalV8Count")
-            Log.i("mTag", "totalV12Count $totalV12Count")
+
+
+            computeLottery(50, 0 + myOffset, false)
+            mapFrontFor50.putAll(frontAllCombinationMap)
+            mapBackFor50.putAll(backAllCombinationMap)
+            frontCardinalityCountFor50 = frontCardinalityCount
+            frontEvenCountFor50 = frontEvenCount
+            v7CountFor50 = v7Count
+            v14CountFor50 = v14Count
+            v21CountFor50 = v21Count
+            v28CountFor50 = v28Count
+            v35CountFor50 = v35Count
+            backCardinalityCountFor50 = backCardinalityCount
+            backEvenCountFor50 = backEvenCount
+            v4CountFor50 = v4Count
+            v8CountFor50 = v8Count
+            v12CountFor50 = v12Count
+
+            frontCardinalityCountForA += frontCardinalityCount
+            frontEvenCountForA += frontEvenCount
+            v7CountForA += v7Count
+            v14CountForA += v14Count
+            v21CountForA += v21Count
+            v28CountForA += v28Count
+            v35CountForA += v35Count
+            backCardinalityCountForA += backCardinalityCount
+            backEvenCountForA += backEvenCount
+            v4CountForA += v4Count
+            v8CountForA += v8Count
+            v12CountForA += v12Count
+
+
+            computeLottery(50, 50 + myOffset, false)
+            mapFrontFor100.putAll(frontAllCombinationMap)
+            mapBackFor100.putAll(backAllCombinationMap)
+            frontCardinalityCountForA += frontCardinalityCount
+            frontEvenCountForA += frontEvenCount
+            v7CountForA += v7Count
+            v14CountForA += v14Count
+            v21CountForA += v21Count
+            v28CountForA += v28Count
+            v35CountForA += v35Count
+            backCardinalityCountForA += backCardinalityCount
+            backEvenCountForA += backEvenCount
+            v4CountForA += v4Count
+            v8CountForA += v8Count
+            v12CountForA += v12Count
+
+            computeLottery(50, 100 + myOffset, false)
+            mapFrontFor150.putAll(frontAllCombinationMap)
+            mapBackFor150.putAll(backAllCombinationMap)
+            frontCardinalityCountForA += frontCardinalityCount
+            frontEvenCountForA += frontEvenCount
+            v7CountForA += v7Count
+            v14CountForA += v14Count
+            v21CountForA += v21Count
+            v28CountForA += v28Count
+            v35CountForA += v35Count
+            backCardinalityCountForA += backCardinalityCount
+            backEvenCountForA += backEvenCount
+            v4CountForA += v4Count
+            v8CountForA += v8Count
+            v12CountForA += v12Count
+
+            computeLottery(50, 150 + myOffset, false)
+            mapFrontFor200.putAll(frontAllCombinationMap)
+            mapBackFor200.putAll(backAllCombinationMap)
+            frontCardinalityCountForA = (frontCardinalityCountForA + frontCardinalityCount) / 4f
+            frontEvenCountForA = (frontEvenCountForA + frontEvenCount) / 4f
+            v7CountForA = (v7CountForA + v7Count) / 4f
+            v14CountForA = (v14CountForA + v14Count) / 4f
+            v21CountForA = (v21CountForA + v21Count) / 4f
+            v28CountForA = (v28CountForA + v28Count) / 4f
+            v35CountForA = (v35CountForA + v35Count) / 4f
+            backCardinalityCountForA = (backCardinalityCountForA + backCardinalityCount) / 4f
+            backEvenCountForA = (backEvenCountForA + backEvenCount) / 4f
+            v4CountForA = (v4CountForA + v4Count) / 4f
+            v8CountForA = (v8CountForA + v8Count) / 4f
+            v12CountForA = (v12CountForA + v12Count) / 4f
+
 
             //算49次的基偶，区间概率
             computeLottery(49, 0 + myOffset, false)
-
-            for (entry in frontAllCombinationMap) {
-                currentFrontAllCombinationMap[entry.key] = entry.value
-            }
-
-            for (entry in backAllCombinationMap) {
-                currentBackAllCombinationMap[entry.key] = entry.value
-            }
-            val currentFrontCardinalityCount = frontCardinalityCount / 1.0f
-            val currentFrontEvenCount = frontEvenCount / 1.0f
-            val currentV7Count = v7Count / 1.0f
-            val currentV14Count = v14Count / 1.0f
-            val currentV21Count = v21Count / 1.0f
-            val currentV28Count = v28Count / 1.0f
-            val currentV35Count = v35Count / 1.0f
-            val currentBackCardinalityCount = backCardinalityCount / 1.0f
-            val currentBackEvenCount = backEvenCount / 1.0f
-            val currentV4Count = v4Count / 1.0f
-            val currentV8Count = v8Count / 1.0f
-            val currentV12Count = v12Count / 1.0f
-            Log.i("mTag", "currentFrontCardinalityCount $currentFrontCardinalityCount")
-            Log.i("mTag", "currentFrontEvenCount $currentFrontEvenCount")
-            Log.i("mTag", "currentV7Count $currentV7Count")
-            Log.i("mTag", "currentV14Count $currentV14Count")
-            Log.i("mTag", "currentV21Count $currentV21Count")
-            Log.i("mTag", "currentV28Count $currentV28Count")
-            Log.i("mTag", "currentV35Count $currentV35Count")
-            Log.i("mTag", "currentBackCardinalityCount $currentBackCardinalityCount")
-            Log.i("mTag", "currentBackEvenCount $currentBackEvenCount")
-            Log.i("mTag", "currentV4Count $currentV4Count")
-            Log.i("mTag", "currentV8Count $currentV8Count")
-            Log.i("mTag", "currentV12Count $currentV12Count")
-            //计算前区基偶
-            val frontCardinalityAverage =
-                (125 - currentFrontCardinalityCount)
-            val frontEvenAverage = (125 - currentFrontEvenCount)
-            var xFrontNegativeNum = 0.0
-            var xFrontPositiveNum = 0.0
-            if (frontCardinalityAverage < 0) {
-                xFrontNegativeNum += frontCardinalityAverage
-            }else {
-                xFrontPositiveNum += frontCardinalityAverage
-            }
-            if (frontEvenAverage < 0) {
-                xFrontNegativeNum += frontEvenAverage
-            }else {
-                xFrontPositiveNum += frontEvenAverage
-            }
-
-            if (xFrontNegativeNum == 0.0) {
-                when (frontCardinalityAverage) {
-                    5.0f -> {
-                        frontCardinalityPercent = 0.7 + 0.5 - totalFrontCardinalityCount / 250.0
-                        frontEvenCountPercent = 0.3 + 0.5 - totalFrontEvenCount / 250.0
-                    }
-                    4.0f -> {
-                        frontCardinalityPercent = 0.65 + 0.5 - totalFrontCardinalityCount / 250.0
-                        frontEvenCountPercent = 0.35 + 0.5 - totalFrontEvenCount / 250.0
-                    }
-                    3.0f -> {
-                        frontCardinalityPercent = 0.6 + 0.5 - totalFrontCardinalityCount / 250.0
-                        frontEvenCountPercent = 0.4 + 0.5 - totalFrontEvenCount / 250.0
-                    }
-                    2.0f -> {
-                        frontCardinalityPercent = 0.55 + 0.5 - totalFrontCardinalityCount / 250.0
-                        frontEvenCountPercent = 0.45 + 0.5 - totalFrontEvenCount / 250.0
-                    }
-                    1.0f -> {
-                        frontCardinalityPercent = 0.5 + 0.5 - totalFrontCardinalityCount / 250.0
-                        frontEvenCountPercent = 0.5 + 0.5 - totalFrontEvenCount / 250.0
-                    }
-                    else -> {
-                        frontCardinalityPercent = 0.3 + 0.5 - totalFrontCardinalityCount / 250.0
-                        frontEvenCountPercent = 0.7 + 0.5 - totalFrontEvenCount / 250.0
-                    }
-                }
-
-            } else {
-                frontCardinalityPercent = if (frontCardinalityAverage >= 0) {
-                    0.5 - totalFrontCardinalityCount / 250.0 + 0.5 + frontCardinalityAverage / xFrontPositiveNum / coefficient
-                }else {
-                    0.5 - totalFrontCardinalityCount / 250.0 + 0.5 - frontCardinalityAverage / xFrontNegativeNum / coefficient
-                }
-
-                frontEvenCountPercent = if (frontEvenAverage >= 0) {
-                    0.5 - totalFrontEvenCount / 250.0 + 0.5 + frontEvenAverage / xFrontPositiveNum / coefficient
-                }else {
-                    0.5 - totalFrontEvenCount / 250.0 + 0.5 - frontEvenAverage / xFrontNegativeNum / coefficient
-                }
-            }
-            Log.i("mTag", "frontCardinalityPercent $frontCardinalityPercent")
-            Log.i("mTag", "frontEvenCountPercent $frontEvenCountPercent")
-
-            //计算前区 区间
-//            val v10CountAverage = ((10.0f / 35) * 250  - currentV10Count)
-//            val v20CountAverage = ((10.0f / 35) * 250 - currentV20Count)
-//            val v30CountAverage = ((10.0f / 35) * 250 - currentV30Count)
-//            val v35CountAverage = ((5.0f / 35) * 250 - currentV35Count)
-//            var vFrontNegativeNum = 0.0
-//            var vFrontPositiveNum = 0.0
-//            if (v10CountAverage < 0) {
-//                vFrontNegativeNum += v10CountAverage
-//            }else {
-//                vFrontPositiveNum += v10CountAverage
-//            }
-//            if (v20CountAverage < 0) {
-//                vFrontNegativeNum += v20CountAverage
-//            }else {
-//                vFrontPositiveNum += v20CountAverage
-//            }
-//            if (v30CountAverage < 0) {
-//                vFrontNegativeNum += v30CountAverage
-//            }else {
-//                vFrontPositiveNum += v30CountAverage
-//            }
-//            if (v35CountAverage < 0) {
-//                vFrontNegativeNum += v35CountAverage
-//            }else {
-//                vFrontPositiveNum += v35CountAverage
-//            }
-//
-//            v10CountPercent = if (v10CountAverage >= 0) {
-//                10.0 / 35 - totalV10Count / 250 + 10.0 / 35 + v10CountAverage / vFrontPositiveNum / coefficient
-//            } else {
-//                10.0 / 35 - totalV10Count / 250 + 10.0 / 35 - v10CountAverage / vFrontNegativeNum / coefficient
-//            }
-//            v20CountPercent = if (v20CountAverage >= 0) {
-//                10.0 / 35 - totalV20Count / 250 + 10.0 / 35 + v20CountAverage / vFrontPositiveNum / coefficient
-//            } else {
-//                10.0 / 35 - totalV20Count / 250 + 10.0 / 35 - v20CountAverage / vFrontNegativeNum / coefficient
-//            }
-//            v30CountPercent = if (v30CountAverage >= 0) {
-//                10.0 / 35 - totalV30Count / 250 + 10.0 / 35 + v30CountAverage / vFrontPositiveNum / coefficient
-//            } else {
-//                10.0 / 35 - totalV30Count / 250 + 10.0 / 35 - v30CountAverage / vFrontNegativeNum / coefficient
-//            }
-//            v35CountPercent = if (v35CountAverage >= 0) {
-//                5.0 / 35 - totalV35Count / 250 + 5.0 / 35 + v35CountAverage / vFrontPositiveNum / coefficient
-//            } else {
-//                5.0 / 35 - totalV35Count / 250 + 5.0 / 35 - v35CountAverage / vFrontNegativeNum / coefficient
-//            }
-//            Log.i("mTag", "v10CountPercent $v10CountPercent")
-//            Log.i("mTag", "v20CountPercent $v20CountPercent")
-//            Log.i("mTag", "v30CountPercent $v30CountPercent")
-//            Log.i("mTag", "v35CountPercent $v35CountPercent")
-
-            //计算后区基偶
-            val backCardinalityAverage = (50 - currentBackCardinalityCount)
-            val backEvenAverage = (50 - currentBackEvenCount)
-            var xBackNegativeNum = 0.0
-            var xBackPositiveNum = 0.0
-            if (backCardinalityAverage < 0) {
-                xBackNegativeNum += backCardinalityAverage
-            }else {
-                xBackPositiveNum += backCardinalityAverage
-            }
-            if (backEvenAverage < 0) {
-                xBackNegativeNum += backEvenAverage
-            }else {
-                xBackPositiveNum += backEvenAverage
-            }
-
-            if (xBackNegativeNum == 0.0) {
-                when (backCardinalityAverage) {
-                    1.0f -> {
-                        backCardinalityPercent = 0.5 + 0.5 - totalBackCardinalityCount / 100.0
-                        backEvenCountPercent = 0.5 + 0.5 - totalBackEvenCount / 100.0
-                    }
-                    2.0f -> {
-                        backCardinalityPercent = 0.6 + 0.5 - totalBackCardinalityCount / 100.0
-                        backEvenCountPercent = 0.4 + 0.5 - totalBackEvenCount / 100.0
-                    }
-                    else -> {
-                        backCardinalityPercent = 0.4 + 0.5 - totalBackCardinalityCount / 100.0
-                        backEvenCountPercent = 0.6 + 0.5 - totalBackEvenCount / 100.0
-                    }
-                }
-            } else {
-                backCardinalityPercent = if (backCardinalityAverage >= 0) {
-                    0.5 - totalBackCardinalityCount / 100.0 + 0.5 + backCardinalityAverage / xBackPositiveNum / coefficient
-                }else {
-                    0.5 - totalBackCardinalityCount / 100.0 + 0.5 - backCardinalityAverage / xBackNegativeNum / coefficient
-                }
-
-                backEvenCountPercent = if (backEvenAverage >= 0) {
-                    0.5 - totalBackEvenCount / 100.0 + 0.5 + backEvenAverage / xBackPositiveNum / coefficient
-                }else {
-                    0.5 - totalBackEvenCount / 100.0 + 0.5 - backEvenAverage / xBackNegativeNum / coefficient
-                }
-            }
-            Log.i("mTag", "backCardinalityPercent $backCardinalityPercent")
-            Log.i("mTag", "backEvenCountPercent $backEvenCountPercent")
-
-            //计算后区 区间
-//            val v6CountAverage = (50 - currentV6Count)
-//            val v12CountAverage = (50 - currentV12Count)
-//            var vBackNegativeNum = 0.0
-//            var vBackPositiveNum = 0.0
-//            if (v6CountAverage < 0) {
-//                vBackNegativeNum += v6CountAverage
-//            }else {
-//                vBackPositiveNum += v6CountAverage
-//            }
-//            if (v12CountAverage < 0) {
-//                vBackNegativeNum += v12CountAverage
-//            } else {
-//                vBackPositiveNum += v12CountAverage
-//            }
-//
-//            if (vBackNegativeNum == 0.0) {
-//                when (v6CountAverage) {
-//                    1.0f -> {
-//                        v6CountPercent = 0.5 + 0.5 - totalV6Count / 100.0
-//                        v12CountPercent = 0.5 + 0.5 - totalV12Count / 100.0
-//                    }
-//                    2.0f -> {
-//                        v6CountPercent = 0.6 + 0.5 - totalV6Count / 100.0
-//                        v12CountPercent = 0.4 + 0.5 - totalV12Count / 100.0
-//                    }
-//                    else -> {
-//                        v6CountPercent = 0.4 + 0.5 - totalV6Count / 100.0
-//                        v12CountPercent = 0.6 + 0.5 - totalV12Count / 100.0
-//                    }
-//                }
-//            } else {
-//                v6CountPercent = if (v6CountAverage >= 0) {
-//                    0.5 - totalV6Count / 100.0 + 0.5 + v6CountAverage / vBackPositiveNum / coefficient
-//                }else {
-//                    0.5 - totalV6Count / 100.0 +  0.5 - v6CountAverage / vBackNegativeNum / coefficient
-//                }
-//                v12CountPercent = if (v12CountAverage >= 0) {
-//                    0.5 - totalV12Count / 100.0 + 0.5 + v12CountAverage / vBackPositiveNum / coefficient
-//                }else {
-//                    0.5 - totalV12Count / 100.0 + 0.5 - v12CountAverage / vBackNegativeNum / coefficient
-//                }
-//            }
-//            Log.i("mTag", "v6CountPercent $v6CountPercent")
-//            Log.i("mTag", "v12CountPercent $v12CountPercent")
+            frontCardinalityCountFor49 = frontCardinalityCount
+            frontEvenCountFor49 = frontEvenCount
+            v7CountFor49 = v7Count
+            v14CountFor49 = v14Count
+            v21CountFor49 = v21Count
+            v28CountFor49 = v28Count
+            v35CountFor49 = v35Count
+            backCardinalityCountFor49 = backCardinalityCount
+            backEvenCountFor49 = backEvenCount
+            v4CountFor49 = v4Count
+            v8CountFor49 = v8Count
+            v12CountFor49 = v12Count
+            mapFrontFor49.putAll(frontAllCombinationMap)
+            mapBackFor49.putAll(backAllCombinationMap)
 
             var hot15FrontString = ""
             var cold15FrontString = ""
@@ -554,83 +385,149 @@ class RoomActivity : AppCompatActivity() {
     private fun predictResult() {
         val stringBuilder = java.lang.StringBuilder()
 
-        val frontResultBuilder = HashMap<String,Int>()
-        val backResultBuilder = HashMap<String,Int>()
+        val frontResultBuilder = HashMap<String, Int>()
+        val backResultBuilder = HashMap<String, Int>()
 
         for (i in 0 until 20) {
-            val v10CountNum: Int = (v10CountPercent * 10000).toInt()
-            val v20CountNum: Int = (v20CountPercent * 10000).toInt()
-            val v30CountNum: Int = (v30CountPercent * 10000).toInt()
-            val v35CountNum: Int = (v35CountPercent * 10000).toInt()
-
             val frontResultSet = CopyOnWriteArrayList<String>()
+            var currentV7Count = v7CountFor49
+            var currentV14Count = v14CountFor49
+            var currentV21Count = v21CountFor49
+            var currentV28Count = v28CountFor49
+            var currentV35Count = v35CountFor49
+
+            var currentCardinalityCount = frontCardinalityCountFor49
+            var currentEventCount = frontEvenCountFor49
             while (frontResultSet.size < 5) {
+                val currentTotal =
+                    currentV7Count + currentV14Count + currentV21Count + currentV28Count + currentV35Count
+                val v7Percent =
+                    (0.2 + (v7CountForA / 250f - currentV7Count / currentTotal) * 4) * 10000
+                val v14Percent =
+                    (0.2 + (v14CountForA / 250f - currentV14Count / currentTotal) * 4) * 10000
+                val v21Percent =
+                    (0.2 + (v21CountForA / 250f - currentV21Count / currentTotal) * 4) * 10000
+                val v28Percent =
+                    (0.2 + (v28CountForA / 250f - currentV28Count / currentTotal) * 4) * 10000
+                val v35Percent =
+                    (0.2 + (v35CountForA / 250f - currentV35Count / currentTotal) * 4) * 10000
+
+                val cardinalPercent =
+                    (0.5 + (frontCardinalityCountForA / 250f -
+                            currentCardinalityCount / (currentCardinalityCount + currentEventCount)) * 8) * 10000
+                val eventPercent =
+                    (0.5 + (frontEvenCountForA / 250f -
+                            currentEventCount / (currentCardinalityCount + currentEventCount)) * 8) * 10000
+
+                Log.i("myTag", "predictResult  v7Percent $v7Percent")
+                Log.i("myTag", "predictResult  v14Percent $v14Percent")
+                Log.i("myTag", "predictResult  v21Percent $v21Percent")
+                Log.i("myTag", "predictResult  v28Percent $v28Percent")
+                Log.i("myTag", "predictResult  v35Percent $v35Percent")
+
+                Log.i("myTag", "predictResult  frontCardinalPercent $cardinalPercent")
+                Log.i("myTag", "predictResult  frontEventPercent $eventPercent")
+
                 val random = (Math.random() * 10000).toInt()
                 Log.i("myTag", "predictResult   random front v35 $random")
                 val frontResult = when {
-                    random < v10CountNum -> {
-                        Log.i("myTag", "predictResult   v10CountNum")
-                        getFinalNum(
+                    random < v7Percent -> {
+                        Log.i("myTag", "predictResult   v7Percent")
+                        val temp = getFinalNum(
                             1,
-                            10,
-                            frontCardinalityPercent * 10000,
+                            7,
+                            cardinalPercent,
+                            veryHot15FrontList,
                             hot15FrontList,
                             cold15FrontList,
-                            veryHot15FrontList,
                             veryCold15FrontList,
-                            totalFrontAllCombinationMap,
-                            currentFrontAllCombinationMap
+                            mapFrontFor49
                         )
+                        if (temp.isNotEmpty()) {
+                            currentV7Count++
+                        }
+                        temp
                     }
-                    random < v10CountNum + v20CountNum -> {
-                        Log.i("myTag", "predictResult   v20CountNum")
-                        getFinalNum(
-                            11,
-                            20,
-                            frontCardinalityPercent * 10000,
+                    random < v7Percent + v14Percent -> {
+                        Log.i("myTag", "predictResult   v14Percent")
+                        val temp = getFinalNum(
+                            8,
+                            14,
+                            cardinalPercent,
+                            veryHot15FrontList,
                             hot15FrontList,
                             cold15FrontList,
-                            veryHot15FrontList,
                             veryCold15FrontList,
-                            totalFrontAllCombinationMap,
-                            currentFrontAllCombinationMap
+                            mapFrontFor49
                         )
+                        if (temp.isNotEmpty()) {
+                            currentV14Count++
+                        }
+                        temp
                     }
-                    random < v10CountNum + v20CountNum + v30CountNum -> {
-                        Log.i("myTag", "predictResult   v30CountNum")
-                        getFinalNum(
+                    random < v7Percent + v14Percent + v21Percent -> {
+                        Log.i("myTag", "predictResult   v21Percent")
+                        val temp = getFinalNum(
+                            15,
                             21,
-                            30,
-                            frontCardinalityPercent * 10000,
+                            cardinalPercent,
+                            veryHot15FrontList,
                             hot15FrontList,
                             cold15FrontList,
-                            veryHot15FrontList,
                             veryCold15FrontList,
-                            totalFrontAllCombinationMap,
-                            currentFrontAllCombinationMap
+                            mapFrontFor49
                         )
+                        if (temp.isNotEmpty()) {
+                            currentV21Count++
+                        }
+                        temp
+                    }
+                    random < v7Percent + v14Percent + v21Percent + v28Percent -> {
+                        Log.i("myTag", "predictResult   v28Percent")
+                        val temp = getFinalNum(
+                            22,
+                            28,
+                            cardinalPercent,
+                            veryHot15FrontList,
+                            hot15FrontList,
+                            cold15FrontList,
+                            veryCold15FrontList,
+                            mapFrontFor49
+                        )
+                        if (temp.isNotEmpty()) {
+                            currentV28Count++
+                        }
+                        temp
                     }
                     else -> {
                         Log.i("myTag", "predictResult   v35CountNum")
-                        getFinalNum(
-                            31,
+                        val temp = getFinalNum(
+                            29,
                             35,
-                            frontCardinalityPercent * 10000,
+                            cardinalPercent,
+                            veryHot15FrontList,
                             hot15FrontList,
                             cold15FrontList,
-                            veryHot15FrontList,
                             veryCold15FrontList,
-                            totalFrontAllCombinationMap,
-                            currentFrontAllCombinationMap
+                            mapFrontFor49
                         )
+                        if (temp.isNotEmpty()) {
+                            currentV35Count++
+                        }
+                        temp
                     }
                 }
                 if (frontResult.isNotEmpty() && !frontResultSet.contains(frontResult)) {
+                    if (frontResult.toInt() % 2 == 0) {
+                        currentEventCount++
+                    } else {
+                        currentCardinalityCount++
+                    }
                     frontResultSet.add(frontResult)
                     if (frontResultBuilder.contains(frontResult)) {
                         val get = frontResultBuilder[frontResult]
-                        frontResultBuilder[frontResult] =  1 + get!!
-                    }else {
+                        frontResultBuilder[frontResult] = 1 + get!!
+                    } else {
                         frontResultBuilder[frontResult] = 1
                     }
                     stringBuilder.append("$frontResult,")
@@ -639,47 +536,102 @@ class RoomActivity : AppCompatActivity() {
 
             stringBuilder.append("--")
 
-            val v6CountNum: Int = (v6CountPercent * 10000).toInt()
             val backResultSet = CopyOnWriteArrayList<String>()
+            var currentV4Count = v4CountFor49
+            var currentV8Count = v8CountFor49
+            var currentV12Count = v12CountFor49
+            val currentBackTotal = currentV4Count + currentV8Count + currentV12Count
+            var currentBackCardinalityCount = backCardinalityCountFor49
+            var currentBackEventCount = backEvenCountFor49
+
             while (backResultSet.size < 2) {
+                val v4Percent =
+                    (0.3333 + (v4CountForA / 100f - currentV4Count / currentBackTotal) * 4) * 10000
+                val v8Percent =
+                    (0.3333 + (v8CountForA / 100f - currentV8Count / currentBackTotal) * 4) * 10000
+                val v12Percent =
+                    (0.3333 + (v12CountForA / 100f - currentV12Count / currentBackTotal) * 4) * 10000
+
+                val cardinalPercent =
+                    (0.5 + (backCardinalityCountForA / 100f -
+                            currentBackCardinalityCount / (currentBackCardinalityCount + currentBackEventCount)) * 8) * 10000
+                val eventPercent =
+                    (0.5 + (backEvenCountForA / 100f -
+                            currentBackEventCount / (currentBackCardinalityCount + currentBackEventCount)) * 8) * 10000
+
+                Log.i("myTag", "predictResult  v4Percent $v4Percent")
+                Log.i("myTag", "predictResult  v8Percent $v8Percent")
+                Log.i("myTag", "predictResult  v12Percent $v12Percent")
+
+                Log.i("myTag", "predictResult  backCardinalPercent $cardinalPercent")
+                Log.i("myTag", "predictResult  backEventPercent $eventPercent")
+
                 val random = (Math.random() * 10000).toInt()
                 Log.i("myTag", "predictResult   random back v12 $random")
                 val frontResult = when {
-                    random < v6CountNum -> {
-                        Log.i("myTag", "predictResult   v6CountNum")
-                        getFinalNum(
+                    random < v4Percent -> {
+                        Log.i("myTag", "predictResult   v4Percent")
+                        val temp = getFinalNum(
                             1,
-                            6,
-                            backCardinalityPercent * 10000,
+                            4,
+                            cardinalPercent,
                             hot15BackList,
                             cold15BackList,
                             veryHot15BackList,
                             veryCold15BackList,
-                            totalBackAllCombinationMap,
-                            currentBackAllCombinationMap
+                            mapBackFor49
                         )
+                        if (temp.isNotEmpty()) {
+                            currentV4Count++
+                        }
+                        temp
+                    }
+                    random < v4Percent + v8Percent -> {
+                        Log.i("myTag", "predictResult   v8Percent")
+                        val temp = getFinalNum(
+                            5,
+                            8,
+                            cardinalPercent,
+                            hot15BackList,
+                            cold15BackList,
+                            veryHot15BackList,
+                            veryCold15BackList,
+                            mapBackFor49
+                        )
+                        if (temp.isNotEmpty()) {
+                            currentV8Count++
+                        }
+                        temp
                     }
                     else -> {
-                        Log.i("myTag", "predictResult   v12CountNum")
-                        getFinalNum(
-                            7,
+                        Log.i("myTag", "predictResult   v12Percent")
+                        val temp = getFinalNum(
+                            9,
                             12,
-                            backCardinalityPercent * 10000,
+                            cardinalPercent,
                             hot15BackList,
                             cold15BackList,
                             veryHot15BackList,
                             veryCold15BackList,
-                            totalBackAllCombinationMap,
-                            currentBackAllCombinationMap
+                            mapBackFor49
                         )
+                        if (temp.isNotEmpty()) {
+                            currentV12Count++
+                        }
+                        temp
                     }
                 }
                 if (frontResult.isNotEmpty() && !backResultSet.contains(frontResult)) {
+                    if (frontResult.toInt() % 2 == 0) {
+                        currentBackEventCount++
+                    } else {
+                        currentBackCardinalityCount++
+                    }
                     backResultSet.add(frontResult)
                     if (backResultBuilder.contains(frontResult)) {
                         val get = backResultBuilder[frontResult]
-                        backResultBuilder[frontResult] =  1 + get!!
-                    }else {
+                        backResultBuilder[frontResult] = 1 + get!!
+                    } else {
                         backResultBuilder[frontResult] = 1
                     }
                     stringBuilder.append("$frontResult,")
@@ -711,15 +663,15 @@ class RoomActivity : AppCompatActivity() {
 
     @Synchronized
     private fun getFinalNum(
-        min: Int, max: Int, frontCardinalityPercent: Double,
-        hot15List: ArrayList<String>, cold15List: ArrayList<String>,
-        veryHot15List: ArrayList<String>, veryCold15List: ArrayList<String>,
-        totalFrontAllCombinationMap: HashMap<String, Float>,
-        currentFrontAllCombinationMap: HashMap<String, Int>
+        min: Int, max: Int, cardinalPercent: Double,
+        veryHot15List: ArrayList<String>, hot15List: ArrayList<String>,
+        cold15List: ArrayList<String>, veryCold15List: ArrayList<String>,
+        currentMap: HashMap<String, Int>
     ): String {
         val random1 = (Math.random() * 10000).toInt()
+        Log.i("myTag", "getFinalNum   isEventNum random $random1")
         val isEventNum = when {
-            random1 < frontCardinalityPercent -> {
+            random1 < cardinalPercent -> {
                 false
             }
             else -> {
@@ -729,9 +681,9 @@ class RoomActivity : AppCompatActivity() {
         Log.i("myTag", "getFinalNum   isEventNum $isEventNum")
 
         val random2 = (Math.random() * 100).toInt()
-        Log.i("myTag", "getFinalNum   predictFinalNum $random2")
+        Log.i("myTag", "getFinalNum   hot clod $random2")
         val result = when {
-            random2 < 15 -> {
+            random2 < 20 -> {
                 Log.i("myTag", "getFinalNum   veryHot15List")
                 predictFinalNum(
                     min,
@@ -739,10 +691,11 @@ class RoomActivity : AppCompatActivity() {
                     veryHot15List,
                     isEventNum,
                     totalFrontAllCombinationMap,
-                    currentFrontAllCombinationMap
+                    currentMap
                 )
             }
-            random2 < 35 -> {
+
+            random2 < 40 -> {
                 Log.i("myTag", "getFinalNum   hot15List")
                 predictFinalNum(
                     min,
@@ -750,9 +703,10 @@ class RoomActivity : AppCompatActivity() {
                     hot15List,
                     isEventNum,
                     totalFrontAllCombinationMap,
-                    currentFrontAllCombinationMap
+                    currentMap
                 )
             }
+
             random2 < 70 -> {
                 Log.i("myTag", "getFinalNum   cold15List")
                 predictFinalNum(
@@ -761,9 +715,10 @@ class RoomActivity : AppCompatActivity() {
                     cold15List,
                     isEventNum,
                     totalFrontAllCombinationMap,
-                    currentFrontAllCombinationMap
+                    currentMap
                 )
             }
+
             else -> {
                 Log.i("myTag", "getFinalNum   veryCold15List")
                 predictFinalNum(
@@ -772,7 +727,7 @@ class RoomActivity : AppCompatActivity() {
                     veryCold15List,
                     isEventNum,
                     totalFrontAllCombinationMap,
-                    currentFrontAllCombinationMap
+                    currentMap
                 )
             }
         }
@@ -784,9 +739,11 @@ class RoomActivity : AppCompatActivity() {
         }
     }
 
-    private fun predictFinalNum(min : Int , max : Int , frontList : ArrayList<String> ,isEventNum : Boolean,
-                                totalFrontAllCombinationMap : HashMap<String,Float>,
-                                currentFrontAllCombinationMap :HashMap<String,Int>) : Int{
+    private fun predictFinalNum(
+        min: Int, max: Int, frontList: ArrayList<String>, isEventNum: Boolean,
+        totalFrontAllCombinationMap: HashMap<String, Float>,
+        currentFrontAllCombinationMap: HashMap<String, Int>
+    ): Int {
 
         val predictList = ArrayList<Int>()
         var totalCount = 0.0
@@ -799,7 +756,7 @@ class RoomActivity : AppCompatActivity() {
                     predictList.add(num)
                     totalCount += totalFrontAllCombinationMap[string]!!
                     currentCount += currentFrontAllCombinationMap[string]!!
-                }else if (!isEventNum && num % 2 != 0) {
+                } else if (!isEventNum && num % 2 != 0) {
                     predictList.add(num)
                     totalCount += totalFrontAllCombinationMap[string]!!
                     currentCount += currentFrontAllCombinationMap[string]!!
@@ -808,12 +765,12 @@ class RoomActivity : AppCompatActivity() {
         }
         if (predictList.size == 0) return -1
 
-        val baseProbability : Double = (1.0000/ predictList.size).toDouble()
-        val percentMap = HashMap<Int,Int>()
+        val baseProbability: Double = (1.0000 / predictList.size).toDouble()
+        val percentMap = HashMap<Int, Int>()
         var percent = 0
         for (i in predictList) {
             var string = i.toString()
-            if ( i < 10) {
+            if (i < 10) {
                 string = "0$i"
             }
             percent += ((baseProbability +
@@ -841,103 +798,25 @@ class RoomActivity : AppCompatActivity() {
     }
 
     private fun getResult() {
-        Thread{
-            computeLottery(14,0 + myOffset,true)
-            computeLottery(15,0 + myOffset,true)
+        Thread {
+            computeLottery(14, 0 + myOffset, true)
+            computeLottery(15, 0 + myOffset, true)
             mapFrontFor15.putAll(frontAllCombinationMap)
             mapBackFor15.putAll(backAllCombinationMap)
-            computeLottery(15,15 + myOffset,true)
-            computeLottery(15,30 + myOffset,true)
-            computeLottery(15,45 + myOffset,true)
-            computeLottery(49,0 + myOffset,true)
-            frontCardinalityCountFor49 = frontCardinalityCount
-            frontEvenCountFor49 = frontEvenCount
-            v7CountFor49 = v7Count
-            v14CountFor49 = v14Count
-            v21CountFor49 = v21Count
-            v28CountFor49 = v28Count
-            v35CountFor49 = v35Count
-            backCardinalityCountFor49 = backCardinalityCount
-            backEvenCountFor49 = backEvenCount
-            v4CountFor49 = v4Count
-            v8CountFor49 = v8Count
-            v12CountFor49 = v12Count
-            computeLottery(50,0 + myOffset,true)
-            mapFrontFor50.putAll(frontAllCombinationMap)
-            mapBackFor50.putAll(backAllCombinationMap)
-            frontCardinalityCountFor50 = frontCardinalityCount
-            frontEvenCountFor50 = frontEvenCount
-            v7CountFor50 = v7Count
-            v14CountFor50 = v14Count
-            v21CountFor50 = v21Count
-            v28CountFor50 = v28Count
-            v35CountFor50 = v35Count
-            backCardinalityCountFor50 = backCardinalityCount
-            backEvenCountFor50 = backEvenCount
-            v4CountFor50 = v4Count
-            v8CountFor50 = v8Count
-            v12CountFor50 = v12Count
+            computeLottery(15, 15 + myOffset, true)
+            computeLottery(15, 30 + myOffset, true)
+            computeLottery(15, 45 + myOffset, true)
 
-            frontCardinalityCountForA += frontCardinalityCount
-            frontEvenCountForA += frontEvenCount
-            v7CountForA += v7Count
-            v14CountForA += v14Count
-            v21CountForA += v21Count
-            v28CountForA += v28Count
-            v35CountForA += v35Count
-            backCardinalityCountForA += backCardinalityCount
-            backEvenCountForA += backEvenCount
-            v4CountForA += v4Count
-            v8CountForA += v8Count
-            v12CountForA += v12Count
+            computeLottery(49, 0 + myOffset, true)
 
-            computeLottery(50,50 + myOffset,true)
-            mapFrontFor100.putAll(frontAllCombinationMap)
-            mapBackFor100.putAll(backAllCombinationMap)
-            frontCardinalityCountForA += frontCardinalityCount
-            frontEvenCountForA += frontEvenCount
-            v7CountForA += v7Count
-            v14CountForA += v14Count
-            v21CountForA += v21Count
-            v28CountForA += v28Count
-            v35CountForA += v35Count
-            backCardinalityCountForA += backCardinalityCount
-            backEvenCountForA += backEvenCount
-            v4CountForA += v4Count
-            v8CountForA += v8Count
-            v12CountForA += v12Count
+            computeLottery(50, 0 + myOffset, true)
 
-            computeLottery(50,100 + myOffset,true)
-            mapFrontFor150.putAll(frontAllCombinationMap)
-            mapBackFor150.putAll(backAllCombinationMap)
-            frontCardinalityCountForA += frontCardinalityCount
-            frontEvenCountForA += frontEvenCount
-            v7CountForA += v7Count
-            v14CountForA += v14Count
-            v21CountForA += v21Count
-            v28CountForA += v28Count
-            v35CountForA += v35Count
-            backCardinalityCountForA += backCardinalityCount
-            backEvenCountForA += backEvenCount
-            v4CountForA += v4Count
-            v8CountForA += v8Count
-            v12CountForA += v12Count
+            computeLottery(50, 50 + myOffset, true)
 
-            computeLottery(50,150 + myOffset,true)
-            mapFrontFor200.putAll(frontAllCombinationMap)
-            mapBackFor200.putAll(backAllCombinationMap)
-            frontCardinalityCountForA += frontCardinalityCount
-            frontEvenCountForA += frontEvenCount
-            v7CountForA += v7Count
-            v14CountForA += v14Count
-            v21CountForA += v21Count
-            v28CountForA += v28Count
-            v35CountForA += v35Count
-            backCardinalityCountForA += backCardinalityCount
-            backEvenCountForA += backEvenCount
-            v4CountForA += v4Count
-            v8CountForA += v8Count
-            v12CountForA += v12Count
+            computeLottery(50, 100 + myOffset, true)
+
+            computeLottery(50, 150 + myOffset, true)
+
             allNumber()
         }.start()
     }
@@ -1028,7 +907,7 @@ class RoomActivity : AppCompatActivity() {
             stringBuilder.append("\n")
         }
 
-        for (i in 10..12){
+        for (i in 10..12) {
             stringBuilder.append("$i")
             stringBuilder.append("\t\t")
             when {
@@ -1055,42 +934,66 @@ class RoomActivity : AppCompatActivity() {
             stringBuilder.append(totalBackAllCombinationMap["$i"]!!)
             stringBuilder.append("\n")
         }
-        stringBuilder.append("49前基数：$frontCardinalityCountFor49   \t50前基数：$frontCardinalityCountFor50  " +
-                "\t200均前基数：${frontCardinalityCountForA/4f}  \t总前基数：$totalFrontCardinalityCount")
+        stringBuilder.append(
+            "49前基数：$frontCardinalityCountFor49   \t50前基数：$frontCardinalityCountFor50  " +
+                    "\t200均前基数：${frontCardinalityCountForA}  \t总前基数：$totalFrontCardinalityCount"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49前偶数：$frontEvenCountFor49  \t50前偶数：$frontEvenCountFor50  " +
-                "\t200均前偶数：${frontEvenCountForA/4f}  \t总前偶数：$totalFrontEvenCount")
+        stringBuilder.append(
+            "49前偶数：$frontEvenCountFor49  \t50前偶数：$frontEvenCountFor50  " +
+                    "\t200均前偶数：${frontEvenCountForA}  \t总前偶数：$totalFrontEvenCount"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v7：$v7CountFor49  \t50 v7：$v7CountFor50  " +
-                "\t200均 v7：${v7CountForA/4f}  \t总v7：$totalV7Count")
+        stringBuilder.append(
+            "49 v7：$v7CountFor49  \t50 v7：$v7CountFor50  " +
+                    "\t200均 v7：${v7CountForA}  \t总v7：$totalV7Count"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v14：$v14CountFor49  \t50 v14：$v14CountFor50  " +
-                "\t200均 v14：${v14CountForA/4f}  \t总v14：$totalV14Count")
+        stringBuilder.append(
+            "49 v14：$v14CountFor49  \t50 v14：$v14CountFor50  " +
+                    "\t200均 v14：${v14CountForA}  \t总v14：$totalV14Count"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v21：$v21CountFor49  \t50 v21：$v21CountFor50  " +
-                "\t200均 v21：${v21CountForA/4f}  \t总v21：$totalV21Count")
+        stringBuilder.append(
+            "49 v21：$v21CountFor49  \t50 v21：$v21CountFor50  " +
+                    "\t200均 v21：${v21CountForA}  \t总v21：$totalV21Count"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v28：$v28CountFor49  \t50 v28：$v28CountFor50  " +
-                "\t200均 v28：${v28CountForA/4f}  \t总v28：$totalV28Count")
+        stringBuilder.append(
+            "49 v28：$v28CountFor49  \t50 v28：$v28CountFor50  " +
+                    "\t200均 v28：${v28CountForA}  \t总v28：$totalV28Count"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v35：$v35CountFor49  \t50 v35：$v35CountFor50  " +
-                "\t200均 v35：${v35CountForA/4f}  \t总v35：$totalV35Count")
+        stringBuilder.append(
+            "49 v35：$v35CountFor49  \t50 v35：$v35CountFor50  " +
+                    "\t200均 v35：${v35CountForA}  \t总v35：$totalV35Count"
+        )
         stringBuilder.append("\n")
 
-        stringBuilder.append("49后基数：$backCardinalityCountFor49  \t50后基数：$backCardinalityCountFor50  " +
-                "\t200均后基数：${backCardinalityCountForA/4f}  \t总后基数：$totalBackCardinalityCount")
+        stringBuilder.append(
+            "49后基数：$backCardinalityCountFor49  \t50后基数：$backCardinalityCountFor50  " +
+                    "\t200均后基数：${backCardinalityCountForA}  \t总后基数：$totalBackCardinalityCount"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49后偶数：$backEvenCountFor49  \t50后偶数：$backEvenCountFor50  " +
-                "\t200均后偶数：${backEvenCountForA/4f}  \t总后偶数：$totalBackEvenCount")
+        stringBuilder.append(
+            "49后偶数：$backEvenCountFor49  \t50后偶数：$backEvenCountFor50  " +
+                    "\t200均后偶数：${backEvenCountForA}  \t总后偶数：$totalBackEvenCount"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v4：$v4CountFor49  \t50 v4：$v4CountFor50  " +
-                "\t200均 v6：${v4CountForA/4f}  \t总v4：$totalV4Count")
+        stringBuilder.append(
+            "49 v4：$v4CountFor49  \t50 v4：$v4CountFor50  " +
+                    "\t200均 v6：${v4CountForA}  \t总v4：$totalV4Count"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v8：$v8CountFor49  \t50 v8：$v8CountFor50  " +
-                "\t200均 v8：${v8CountForA/4f}  \t总v8：$totalV8Count")
+        stringBuilder.append(
+            "49 v8：$v8CountFor49  \t50 v8：$v8CountFor50  " +
+                    "\t200均 v8：${v8CountForA}  \t总v8：$totalV8Count"
+        )
         stringBuilder.append("\n")
-        stringBuilder.append("49 v12：$v12CountFor49  \t50 v12：$v12CountFor50  " +
-                "\t200均 v12：${v12CountForA/4f}  \t总v12：$totalV12Count")
+        stringBuilder.append(
+            "49 v12：$v12CountFor49  \t50 v12：$v12CountFor50  " +
+                    "\t200均 v12：${v12CountForA}  \t总v12：$totalV12Count"
+        )
         stringBuilder.append("\n")
         writeSdcard(stringBuilder.toString(), "calculateResult.txt", true)
     }
@@ -1265,18 +1168,18 @@ class RoomActivity : AppCompatActivity() {
     private fun clearLastDate() {
         frontAllCombinationMap.clear()
         backAllCombinationMap.clear()
-        frontCardinalityCount = 0
-        frontEvenCount = 0
-        v7Count = 0
-        v14Count = 0
-        v21Count = 0
-        v28Count = 0
-        v35Count = 0
-        backCardinalityCount = 0
-        backEvenCount = 0
-        v4Count = 0
-        v8Count = 0
-        v12Count = 0
+        frontCardinalityCount = defaultValue
+        frontEvenCount = defaultValue
+        v7Count = defaultValue
+        v14Count = defaultValue
+        v21Count = defaultValue
+        v28Count = defaultValue
+        v35Count = defaultValue
+        backCardinalityCount = defaultValue
+        backEvenCount = defaultValue
+        v4Count = defaultValue
+        v8Count = defaultValue
+        v12Count = defaultValue
     }
 
     private fun initDate() {
@@ -1318,8 +1221,9 @@ class RoomActivity : AppCompatActivity() {
         "android.permission.WRITE_EXTERNAL_STORAGE"
     )
 
-    private fun writeSdcard(text: String,fileName: String,append : Boolean = false) {
-        val storage = "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath}/lottery"
+    private fun writeSdcard(text: String, fileName: String, append: Boolean = false) {
+        val storage =
+            "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath}/lottery"
         val tmepfile = File(storage)
         if (!tmepfile.exists()) {
             tmepfile.mkdirs()
@@ -1335,7 +1239,7 @@ class RoomActivity : AppCompatActivity() {
         Log.i("mTag", file1.path)
         var bufferedWriter: BufferedWriter? = null
         try {
-            bufferedWriter = BufferedWriter(OutputStreamWriter(FileOutputStream(file1,append)))
+            bufferedWriter = BufferedWriter(OutputStreamWriter(FileOutputStream(file1, append)))
             bufferedWriter.write(text)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
